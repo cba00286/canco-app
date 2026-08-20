@@ -1,5 +1,5 @@
 {
-  "_comment": "1화 「안녕, 나는 쿵쿵이야!」 씬별 프롬프트. {캐릭터명}은 characters.json의 desc로 치환된다({이름}=전체 묘사, [이름]=축약 묘사). 원본 인수인계 문서에 S#7이 비어 있어 그대로 유지했다(docs/00_원본_인수인계.md 참고).",
+  "_comment": "1화 「안녕, 나는 쿵쿵이야!」 씬별 프롬프트. {이름}은 전체 묘사, [이름]은 축약 묘사로 치환된다. S#7은 원본 인수인계 문서에 비어 있어 S#6(이름 받기) → S#8(개울가 구조) 사이를 잇는 초안으로 새로 작성했다(draft: true). 확정 대본이 나오면 교체할 것.",
   "scenes": [
     {
       "id": "S1",
@@ -48,6 +48,15 @@
       "duration": 4,
       "image": "{쿵쿵} wobbling and trying to stand for the first time in front of {루카}, who is laughing warmly with the goggles lowered over the eyes, morning sunlight, cheerful close-up two-shot, tender friendship moment",
       "motion": "The baby triceratops wobbles, falls, and gets back up with a determined expression, the tiger cub claps encouragingly, warm morning light flickers through the leaves"
+    },
+    {
+      "id": "S7",
+      "title": "서툰 첫 나들이 (초안 — 확정 대본 나오면 교체)",
+      "seed": 21007,
+      "duration": 4,
+      "draft": true,
+      "image": "{쿵쿵} taking his first clumsy walk along a sunlit forest path, tripping over a tree root and tumbling nose-first into a pile of soft leaves, [루카] and [소미] rushing to help him up while [두리], [초코] and [몽이] laughing behind them, dappled sunlight through the canopy, drifting butterflies, cheerful mid-shot, tender friendship moment",
+      "motion": "The baby triceratops toddles forward on wobbly legs, trips and tumbles into the leaves with a puff of leaf confetti, the tiger cub and rabbit reach down and pull him back up, everyone laughs together, dappled sunlight and butterflies drift across the frame"
     },
     {
       "id": "S8",

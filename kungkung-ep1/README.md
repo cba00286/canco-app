@@ -37,7 +37,7 @@ export HF_TOKEN=hf_xxxxxxxx          # ZeroGPU 쿼터는 계정 단위라 로그
 
 cd kungkung-ep1
 python3 scripts/pipeline.py chars      # 1) 캐릭터 레퍼런스 6종
-python3 scripts/pipeline.py scenes     # 2) 씬 키프레임 8종
+python3 scripts/pipeline.py scenes     # 2) 씬 키프레임 9종
 python3 scripts/pipeline.py videos     # 3) 키프레임 → 4~5초 클립
 python3 scripts/pipeline.py assemble   # 4) 이어붙이기 + 테마곡 합성
 
@@ -66,7 +66,7 @@ python3 scripts/pipeline.py all        # 1~4 한 번에
 ```
 kungkung-ep1/
 ├── prompts/characters.json   # 캐릭터 6종 고정 묘사 + seed
-├── prompts/scenes.json       # 씬 8종 이미지/모션 프롬프트
+├── prompts/scenes.json       # 씬 9종 이미지/모션 프롬프트
 ├── scripts/pipeline.py       # 4단계 실행기
 ├── reference/                # 쿵쿵이 공식 레퍼런스 이미지 (바이너리는 미커밋, reference/README.md 참고)
 ├── docs/00_원본_인수인계.md   # 원본 기획 문서
@@ -78,7 +78,7 @@ kungkung-ep1/
 `scenes.json` 안의 `{루카}`는 **전체 묘사**, `[루카]`는 **축약 묘사**로 치환된다.
 등장인물이 6명인 엔딩 컷에 전체 묘사를 6번 넣으면 프롬프트가 250단어를 넘어 연출 지시가
 희석되므로, **주인공 쿵쿵과 그 컷의 주연만 전체 묘사, 나머지는 축약 묘사**를 쓴다.
-현재 전 씬이 200단어 이하로 맞춰져 있다(S1 107 … ENDING 187).
+현재 전 씬이 200단어 이하로 맞춰져 있다(S1 107 / S7 198 / ENDING 187).
 
 ### 쿵쿵이 묘사 보정
 
@@ -131,8 +131,11 @@ kungkung-ep1/
 2. **캐릭터 일관성 선별** — 프롬프트만으로는 완벽히 고정되지 않는다. `--force`로 여러 번
    뽑은 뒤 톤이 가장 맞는 컷을 남기고, 필요하면 `Qwen-Image-Edit` 계열로 레퍼런스 기반
    각도 변형을 쓰는 편이 낫다(위 base64 입력 형식 주의).
-3. **S#7 누락** — 원본 인수인계 문서에 S#6 다음이 S#8이다. 7번 씬 프롬프트가 확정되면
-   `prompts/scenes.json`에 같은 형식으로 추가하면 파이프라인이 자동으로 잡는다.
+3. **S#7은 초안** — 원본 인수인계 문서에 S#6 다음이 바로 S#8이라 7번 씬이 비어 있었다.
+   S#6(첫걸음·이름 받기) → S#8(개울가에서 소미를 구함) 사이를 잇도록
+   「서툰 첫 나들이」(쿵쿵이 뿌리에 걸려 넘어지고 친구들이 일으켜 세우는 컷)를 새로 써 넣었다.
+   `scenes.json`에서 `"draft": true`로 표시해 두었으니, 확정 대본이 나오면 그 항목의
+   `title`/`image`/`motion`만 갈아끼우면 된다.
 4. **테마곡** — Suno는 API가 유료 플랜이라 자동화 대상에서 뺐다. 웹/앱에서 생성해
    `assets/theme_song.mp3`로 두면 `assemble` 단계가 자동으로 합성한다.
 5. **클립 길이** — 클립이 4~5초라 실제 연출 길이와 맞추려면 반복재생·속도조절 편집이 필요하다.
