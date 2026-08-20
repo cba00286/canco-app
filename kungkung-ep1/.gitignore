@@ -4,8 +4,6 @@ outputs/**/*.jpg
 outputs/**/*.mp4
 outputs/**/*.webp
 outputs/filelist.txt
-reference/*.png
-reference/*.jpg
 assets/*.mp3
 __pycache__/
 *.pyc

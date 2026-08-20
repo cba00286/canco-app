@@ -68,7 +68,7 @@ kungkung-ep1/
 ├── prompts/characters.json   # 캐릭터 6종 고정 묘사 + seed
 ├── prompts/scenes.json       # 씬 9종 이미지/모션 프롬프트
 ├── scripts/pipeline.py       # 4단계 실행기
-├── reference/                # 쿵쿵이 공식 레퍼런스 이미지 (바이너리는 미커밋, reference/README.md 참고)
+├── reference/                # 쿵쿵이 공식 레퍼런스 이미지
 ├── docs/00_원본_인수인계.md   # 원본 기획 문서
 └── outputs/                  # characters / scenes / videos / manifest.json
 ```
