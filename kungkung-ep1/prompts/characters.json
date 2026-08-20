@@ -1,0 +1,55 @@
+{
+  "_comment": "캐릭터 고정 묘사. 씬 프롬프트에서 {이름}은 desc(전체 묘사), [이름]은 desc_short(축약 묘사)로 치환된다. 주인공 쿵쿵은 전체 묘사, 배경 친구들은 축약 묘사를 써서 프롬프트가 200단어를 넘지 않게 한다. 쿵쿵 묘사는 사용자가 제공한 공식 레퍼런스 이미지(reference/kungkung_official_reference.png)에 맞춰 보정됨.",
+  "style_tag": "3D Pixar/DreamWorks style animated film still, soft studio lighting, high detail fur and scale texture, warm color grading, family animation movie quality, 16:9 cinematic composition",
+  "negative_prompt": "text, watermark, signature, copyright, blurry, low resolution, deformed, extra limbs, scary, photorealistic human",
+  "characters": {
+    "쿵쿵": {
+      "id": "kungkung",
+      "role": "주인공",
+      "seed": 12001,
+      "desc": "a baby triceratops named Kung-Kung, soft pastel mint-green scaly skin with a cream-colored belly and muzzle, three small peach-colored horns (two above the eyes, one on the snout), a low beige neck frill with softly rounded scallops, very large sparkling green-hazel eyes with bright catchlights, blush pink cheeks, an ivory bandana scarf with a colorful tropical floral pattern tied around the neck, chubby rounded body, short stubby legs, cheerful open smile",
+      "ref_prompt": "full-body character reference sheet on a soft neutral pastel background, standing in a confident signature pose with both front paws on hips, three-quarter front view",
+      "desc_short": "Kung-Kung the mint-green baby triceratops with three peach horns and a floral ivory bandana"
+    },
+    "루카": {
+      "id": "luca",
+      "role": "가장 친한 친구",
+      "seed": 12002,
+      "desc": "a baby tiger cub named Luca, bright orange fur with dark brown stripes, cream-colored face and belly, brown aviator goggles pushed up on the forehead, blue denim overalls, energetic wide grin",
+      "ref_prompt": "full-body character reference sheet on a soft neutral pastel background, standing with one paw waving, three-quarter front view",
+      "desc_short": "Luca the orange baby tiger cub in denim overalls with aviator goggles on his forehead"
+    },
+    "몽이": {
+      "id": "mongi",
+      "role": "몽상가",
+      "seed": 12003,
+      "desc": "a baby penguin named Mong-i, glossy black and white feathers, a red beanie hat with a small propeller, tiny flippers, dreamy wide eyes",
+      "ref_prompt": "full-body character reference sheet on a soft neutral pastel background, standing with flippers slightly spread, three-quarter front view",
+      "desc_short": "Mong-i the baby penguin in a red beanie hat"
+    },
+    "소미": {
+      "id": "somi",
+      "role": "다정한 막내",
+      "seed": 12004,
+      "desc": "a baby rabbit named Somi, pale pink fur, long soft ears, a tiny pink neckerchief, holding a small sparkly trinket wand, gentle shy expression",
+      "ref_prompt": "full-body character reference sheet on a soft neutral pastel background, standing while holding the sparkly trinket, three-quarter front view",
+      "desc_short": "Somi the pale pink baby rabbit with long ears holding a sparkly trinket"
+    },
+    "두리": {
+      "id": "duri",
+      "role": "박식한 관찰자",
+      "seed": 12005,
+      "desc": "a baby koala named Duri, soft gray fur with a cream chest, round wire glasses, a small satchel over one shoulder, calm composed expression",
+      "ref_prompt": "full-body character reference sheet on a soft neutral pastel background, standing calmly adjusting the glasses, three-quarter front view",
+      "desc_short": "Duri the gray baby koala with round glasses"
+    },
+    "초코": {
+      "id": "choco",
+      "role": "장난꾸러기",
+      "seed": 12006,
+      "desc": "a baby golden retriever puppy named Choco, golden-tan fluffy fur, wearing a small brown bandana, floppy ears, cheerful sniffing pose with wagging tail",
+      "ref_prompt": "full-body character reference sheet on a soft neutral pastel background, cheerful sniffing pose, three-quarter front view",
+      "desc_short": "Choco the golden-tan baby retriever puppy in a brown bandana"
+    }
+  }
+}
