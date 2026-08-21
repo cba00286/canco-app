@@ -81,9 +81,17 @@ def scene_prompt(chars: dict, scene: dict) -> str:
 
 def make_client(space: str):
     from gradio_client import Client
+    import inspect
 
     token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACEHUB_API_TOKEN")
-    return Client(space, hf_token=token)
+    if not token:
+        print("  · HF_TOKEN이 없어 익명으로 접속한다. ZeroGPU 대기열이 길어질 수 있다.")
+    # 토큰 인자 이름이 gradio_client 버전에 따라 다르다(구버전 hf_token, 신버전 token).
+    kwargs = {}
+    if token:
+        params = inspect.signature(Client.__init__).parameters
+        kwargs["token" if "token" in params else "hf_token"] = token
+    return Client(space, **kwargs)
 
 
 def resolve_endpoint(client, keywords: tuple[str, ...]) -> tuple[str, set[str]]:
