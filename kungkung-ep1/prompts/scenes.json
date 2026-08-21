@@ -1,0 +1,78 @@
+{
+  "_comment": "1화 「안녕, 나는 쿵쿵이야!」 씬별 프롬프트. {이름}은 전체 묘사, [이름]은 축약 묘사로 치환된다. S#7은 원본 인수인계 문서에 비어 있어 S#6(이름 받기) → S#8(개울가 구조) 사이를 잇는 초안으로 새로 작성했다(draft: true). 확정 대본이 나오면 교체할 것.",
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "숲속 공터",
+      "seed": 21001,
+      "duration": 4,
+      "image": "five baby forest animal friends playing tag in a sunny forest clearing — [루카], [소미], [두리], [초코], and [몽이] — warm afternoon sunlight, lush green grass, wildflowers, joyful motion, cinematic wide shot",
+      "motion": "Camera slowly pans right following the animals as they run and laugh, gentle bouncing character motion, leaves rustling in the wind, soft natural lighting"
+    },
+    {
+      "id": "S2",
+      "title": "강물 위 거대한 얼음덩어리",
+      "seed": 21002,
+      "duration": 5,
+      "image": "dark storm clouds rolling in over a forest river, heavy rain, a massive glowing ice block floating down the swollen river, a dramatic lightning flash in the background, five baby animal friends — [루카], [소미], [두리], [초코], and [몽이] — pointing in surprise from the riverbank, cinematic dramatic lighting",
+      "motion": "Camera pushes in slowly toward the ice block as it drifts closer, rain falling continuously, a distant lightning flash illuminates the scene, water ripples and splashes, tense atmospheric motion"
+    },
+    {
+      "id": "S3",
+      "title": "얼음 속에서 발견한 알",
+      "seed": 21003,
+      "duration": 4,
+      "image": "close-up of a large egg faintly glowing inside a translucent ice block lodged against riverbank rocks, five baby animal friends — [루카], [소미], [두리], [초코], and [몽이] — gathered around looking amazed, soft internal glow from the egg, rain still falling lightly, warm hopeful lighting contrasting against the dark storm",
+      "motion": "Slow dolly-in toward the ice block, a subtle pulsing glow from within the egg synced with a faint heartbeat rhythm, the characters lean in closer with wonder"
+    },
+    {
+      "id": "S4",
+      "title": "몸으로 얼음을 녹여주는 밤",
+      "seed": 21004,
+      "duration": 5,
+      "image": "five baby animal friends — [루카], [소미], [두리], [초코], and [몽이] — curled up together embracing a large ice block under a big tree at night, gentle moonlight, rain lightly falling, peaceful sleeping poses, warm emotional tone, soft blue-and-gold night lighting",
+      "motion": "Very slow time-lapse style motion, the ice block subtly melting with dripping water, the characters' breathing motion while asleep, moonlight flickering through the clouds"
+    },
+    {
+      "id": "S5",
+      "title": "새벽, 알이 깨어나는 순간 (하이라이트)",
+      "seed": 21005,
+      "duration": 5,
+      "image": "dramatic sunrise breaking through storm clouds, a cracking egg shell bursting open, {쿵쿵} emerging with mouth open in a joyful first cry, golden sunrise backlight creating a glowing rim-light silhouette, five baby animal friends watching in awe with tears of joy, epic emotional cinematic composition, wide shot",
+      "motion": "The egg shell cracks and bursts open in slow motion, the baby triceratops' head emerges and looks up at the sunrise, camera slowly cranes upward revealing the full triumphant moment, golden light rays sweep across the frame, soft particle effects"
+    },
+    {
+      "id": "S6",
+      "title": "이름을 받는 장면",
+      "seed": 21006,
+      "duration": 4,
+      "image": "{쿵쿵} wobbling and trying to stand for the first time in front of {루카}, who is laughing warmly with the goggles lowered over the eyes, morning sunlight, cheerful close-up two-shot, tender friendship moment",
+      "motion": "The baby triceratops wobbles, falls, and gets back up with a determined expression, the tiger cub claps encouragingly, warm morning light flickers through the leaves"
+    },
+    {
+      "id": "S7",
+      "title": "서툰 첫 나들이 (초안 — 확정 대본 나오면 교체)",
+      "seed": 21007,
+      "duration": 4,
+      "draft": true,
+      "image": "{쿵쿵} taking his first clumsy walk along a sunlit forest path, tripping over a tree root and tumbling nose-first into a pile of soft leaves, [루카] and [소미] rushing to help him up while [두리], [초코] and [몽이] laughing behind them, dappled sunlight through the canopy, drifting butterflies, cheerful mid-shot, tender friendship moment",
+      "motion": "The baby triceratops toddles forward on wobbly legs, trips and tumbles into the leaves with a puff of leaf confetti, the tiger cub and rabbit reach down and pull him back up, everyone laughs together, dappled sunlight and butterflies drift across the frame"
+    },
+    {
+      "id": "S8",
+      "title": "개울가 구조 장면",
+      "seed": 21008,
+      "duration": 5,
+      "image": "{쿵쿵} bravely swimming through a gentle stream current toward {소미}, who reaches for a floating branch, determined expression, splashing water, warm daytime lighting, dynamic action composition",
+      "motion": "The baby triceratops paddles forward through the water with effort, pushes the branch toward the rabbit with its horn, the rabbit grabs on safely, splashing water droplets catch the sunlight"
+    },
+    {
+      "id": "ENDING",
+      "title": "노을 지는 언덕",
+      "seed": 21009,
+      "duration": 5,
+      "image": "six baby animal friends sitting together on a hilltop watching a warm orange sunset — [루카], [소미], [두리], [초코], [몽이] and {쿵쿵} — silhouette composition, the baby triceratops standing with front paws on hips in a signature confident pose, heartwarming finale shot",
+      "motion": "Camera slowly pulls back to reveal the full group silhouetted against the sunset, gentle wind moves the grass and fur, the triceratops strikes its signature pose, warm glowing light"
+    }
+  ]
+}
