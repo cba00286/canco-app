@@ -1,110 +1,95 @@
-# Hermes Agent
+# Hermes Agent — 로컬 설치 가이드
 
-쓸수록 사용자를 더 잘 기억하고, 반복되는 작업을 스스로 "스킬"로 저장해
-다음번에는 더 빠르게 처리하는 독립형 AI 에이전트 프레임워크입니다.
-(canco-app 저장소와는 별개의 프로젝트로, `hermes-agent/` 디렉토리 아래에
-존재합니다.)
+"Hermes Agent"는 이 저장소에서 새로 만든 프레임워크가 아니라,
+**Nous Research가 만든 실제 오픈소스 프로젝트**입니다 (MIT 라이선스).
+쓸수록 사용자를 기억하고, 반복되는 작업을 절차 기억(procedural memory)으로
+"스킬"화해서 다음번에는 더 빠르게 처리하는 자율 에이전트입니다.
 
-## 핵심 개념
+- 공식 사이트: https://hermes-agent.nousresearch.com
+- 공식 문서: https://hermes-agent.nousresearch.com/docs/
+- 소스코드: https://github.com/NousResearch/hermes-agent
 
-- **영구 기억 (`hermes/memory.py`)** — 대화에서 알게 된 사실을 JSON 파일에
-  누적 저장합니다. 세션이 끝나도 사라지지 않고, 다음 실행 때 시스템
-  프롬프트에 포함되어 Claude에게 전달됩니다.
-- **스킬화 (`hermes/skills.py`)** — 같은 유형의 요청이 반복되면
-  (`HermesAgent.SKILL_LEARN_THRESHOLD`, 기본 2회) 에이전트가 이를
-  감지해서 스킬로 저장하라고 제안합니다. 저장된 스킬은 이름·설명·단계·
-  트리거 키워드를 가지며, 이후 트리거와 일치하는 요청이 오면 바로
-  인식되어 재사용됩니다.
-- **에이전트 루프 (`hermes/agent.py`)** — 위 두 저장소를 시스템 프롬프트로
-  엮어 Anthropic Claude API를 호출합니다.
+이 폴더(`hermes-agent/`)는 그 실제 프로젝트를 **여러분의 로컬 머신**에
+설치하고 구성하기 위한 가이드와 스크립트만 담고 있습니다. canco-app
+저장소(Android 앱 빌드 자동화) 자체에는 Hermes Agent 구동에 필요한 요소가
+없으므로, 아래 절차는 클라우드 샌드박스가 아니라 직접 소유한 로컬
+컴퓨터에서 실행하세요.
+
+## 왜 로컬에서 실행해야 하나요?
+
+- **상시 실행 전제**: cron 작업, 메신저 게이트웨이(Telegram/Discord/Slack
+  등)를 갖춘 도구라, 일회성으로 사라지는 클라우드 컨테이너에는 맞지
+  않습니다.
+- **강력한 도구 접근 권한**: 파일시스템·셸 접근이 가능한 자율 에이전트이므로
+  신뢰할 수 있는 본인 소유 환경에서 실행해야 안전합니다. (참고: 이 종류의
+  자율 에이전트가 "무인(YOLO) 모드"로 악용된 보안 사고 사례가 실제로
+  보고된 바 있으니, 초기 설정 시 어떤 도구에 어떤 권한을 줄지 신중히
+  검토하세요.)
 
 ## 설치
 
-```bash
-cd hermes-agent
-pip install -r requirements.txt
-export ANTHROPIC_API_KEY=sk-ant-...
-```
-
-## 실행 (대화형 REPL)
+### Linux / macOS / WSL2 / Termux
 
 ```bash
-python -m hermes.cli
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc
+hermes
 ```
 
-```
-you> /remember 사용자는 매주 금요일에 릴리즈 빌드를 만든다
-[기억함] 사용자는 매주 금요일에 릴리즈 빌드를 만든다
+### Windows (PowerShell)
 
-you> 릴리즈 빌드 준비해줘
-you> 릴리즈 빌드 준비해줘
-[Hermes] 비슷한 요청을 2번째 하고 계시네요. '/skill save <이름> | <설명> | <단계1;단계2>' 로 저장해두면 다음부터 더 빨리 처리할 수 있어요.
-
-you> /skill save release_build | Android 릴리즈 빌드 생성 | gradlew assembleRelease 실행;apk 서명 확인 | 릴리즈 빌드,release build
-[스킬 저장됨] release_build
-
-you> 릴리즈 빌드 준비해줘
-[Hermes] 저장된 스킬 'release_build' 을 적용합니다: Android 릴리즈 빌드 생성
-  1. gradlew assembleRelease 실행
-  2. apk 서명 확인
-hermes> ...
+```powershell
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 ```
 
-## REPL 명령어
+설치 스크립트가 `uv`, Python 3.11, Node.js, ripgrep, ffmpeg를 자동으로
+준비합니다.
+
+또는 이 저장소에 포함된 [`setup-local.sh`](./setup-local.sh)를 로컬
+머신에서 실행해도 됩니다 (아래 참고).
+
+## 완전히 로컬 모델로만 실행하기 (Ollama, API 키 불필요)
+
+클라우드 API 키/구독 없이 완전히 로컬에서 돌리려면 Ollama를 함께
+사용하세요.
+
+```bash
+# 1) Ollama 설치(https://ollama.com) 후 원하는 모델 받기
+ollama pull llama3.1
+
+# 2) Ollama 실행 (OpenAI 호환 API를 127.0.0.1:11434 에 노출)
+ollama serve
+
+# 3) Hermes Agent가 Ollama를 바라보도록 설정
+hermes config set model.provider custom
+hermes config set model.base_url http://127.0.0.1:11434/v1
+hermes config set model.name llama3.1
+```
+
+대화형으로 설정하려면 `hermes model`을 실행해 커스텀 엔드포인트를
+선택해도 됩니다.
+
+## 기본 사용법
+
+```bash
+hermes                 # 대화형 CLI 시작
+hermes model           # LLM 제공자/모델 선택
+hermes tools           # 사용할 도구 구성
+hermes gateway setup   # 메신저(Telegram/Discord 등) 연동 (선택)
+hermes doctor          # 설치/설정 문제 진단
+hermes update          # 최신 버전으로 업데이트
+```
+
+CLI 안에서 자주 쓰는 슬래시 명령어:
 
 | 명령어 | 설명 |
 | --- | --- |
-| `/remember <내용>` | 사실을 영구 기억에 저장 |
-| `/memory` | 저장된 기억 목록 보기 |
-| `/skill save <이름> \| <설명> \| <단계1;단계2> \| <트리거1,트리거2>` | 스킬 저장 |
-| `/skills` | 저장된 스킬 목록 보기 |
-| `/help` | 도움말 |
-| `/exit` | 종료 |
+| `/skills` | 지금까지 학습된 스킬 목록 확인 |
+| `/model [name]` | 모델 즉시 전환 |
+| `/new`, `/reset` | 새 대화 시작 |
+| `/compress`, `/usage` | 컨텍스트 최적화 및 사용량 확인 |
 
-## 코드로 직접 사용하기
+## 참고
 
-```python
-from hermes import HermesAgent
-
-agent = HermesAgent()
-agent.remember("사용자는 Kotlin과 Gradle을 주로 쓴다")
-agent.learn_skill(
-    name="release_build",
-    description="Android 릴리즈 빌드 생성",
-    steps=["gradlew assembleRelease 실행", "apk 서명 확인"],
-    triggers=["릴리즈 빌드", "release build"],
-)
-
-count = agent.observe_task("릴리즈 빌드 해줘")  # 반복 횟수 추적
-skill = agent.matching_skill("릴리즈 빌드 해줘")  # 매칭되는 스킬 조회
-reply = agent.respond("릴리즈 빌드 해줘")          # Claude 호출 (ANTHROPIC_API_KEY 필요)
-```
-
-## 테스트
-
-API 키 없이 메모리/스킬 로직만 검증합니다.
-
-```bash
-cd hermes-agent
-pip install pytest
-pytest
-```
-
-## 저장 위치
-
-- `memory/memory.json` — 영구 기억 (기본 경로, git에는 커밋되지 않음)
-- `skills/skills.json` — 스킬 라이브러리 (기본 경로, git에는 커밋되지 않음)
-
-두 파일 모두 `Memory(path=...)` / `SkillLibrary(path=...)` 로 위치를
-바꿀 수 있습니다.
-
-## 현재 범위와 한계
-
-- MVP 단계로, 스킬 매칭은 트리거 키워드 포함 여부로 판단하는 단순한
-  방식입니다 (임베딩 기반 유사도 매칭은 다음 단계).
-- 스킬의 "단계"는 사람이 직접 정의해 저장하며, 에이전트가 자동으로
-  실행 결과를 검증하지는 않습니다 (실제 셸/파일 조작 도구 연동은 아직
-  없음 — 안전하게 범위를 좁혀 시작했습니다).
-- `respond()`는 Anthropic API 호출이 필요하므로 `ANTHROPIC_API_KEY`가
-  없으면 대화 기능은 동작하지 않고, 기억/스킬 저장·조회 기능만
-  사용할 수 있습니다.
+이 README는 공식 문서(위 링크)를 바탕으로 정리한 로컬 설치 요약입니다.
+최신 정보는 항상 공식 문서를 우선하세요.
